@@ -17,7 +17,12 @@ jobs:
           pip install flake8
       - name: Run tests
         run: |
-          pytest
+          pytest > log_pytest.txt
+      - name: Upload test log
+        uses: actions/upload-artifact@v4
+        with:
+          name: log_pytest
+          path: log_pytest.txt
       - name: Run flake8
         uses: py-actions/flake8@v2
       - name: Test Print fake password secret
